@@ -211,7 +211,7 @@ async function controllaDisponibilita() {         //In pratica controlla quale f
 
                                                                   // Quando cambio la data,
                                                                   // controlliamo nuovamente la disponibilità
-dataInput.addEventListener(.                         //Ogni volta che l'utente cambia la data nella sala che vuole prenotare vado a rifare il controllo della disponibilità
+dataInput.addEventListener(                         //Ogni volta che l'utente cambia la data nella sala che vuole prenotare vado a rifare il controllo della disponibilità
     'change',
     controllaDisponibilita
 );

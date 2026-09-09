@@ -33,7 +33,7 @@ function controllaAdmin(req, res, next) {       //Serve per verificare che chi c
     next();
 }
 
-app.post('/api/registrazione', async (req, res) => {      //Quando viene fatto il login si fa un'operazione di destructuring, in pratica i singoli dati ottenuti vengono messi in variabili separate che poi vengono utilizzate per l'inserimento del database  
+app.post('/api/registrazione', async (req, res) => {      //Quando viene effettuata la registrazione recuperiamo i dati inviati dal client tramite destructuring 
 
     const { nome, cognome, email, password } = req.body;
 
@@ -255,40 +255,70 @@ app.post('/api/prenotazioni', (req, res) => {           //"Il controllo viene fa
      * non siano già passati.
      */
 
-    const [anno, mese, giorno] =
-        data.split('-').map(Number);
 
+// Controllo formato della data
+if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {
+    return res.status(400).json({
+        messaggio: 'Data non valida.'
+    });
+}
 
-    const oraInizio =
-        fasciaOraria.split('-')[0];
+const [anno, mese, giorno] =
+    data.split('-').map(Number);
 
+// Controllo che la data esista realmente
+const dataControllo =
+    new Date(anno, mese - 1, giorno);
 
-    const [ore, minuti] =
-        oraInizio.split(':').map(Number);
+if (
+    dataControllo.getFullYear() !== anno ||
+    dataControllo.getMonth() !== mese - 1 ||
+    dataControllo.getDate() !== giorno
+) {
+    return res.status(400).json({
+        messaggio: 'Data non valida.'
+    });
+}
 
+// Controllo fascia oraria
+const fasceConsentite = [
+    '09:00-11:00',
+    '11:00-13:00',
+    '14:00-16:00',
+    '16:00-18:00'
+];
 
-    const dataPrenotazione =
-        new Date(
-            anno,
-            mese - 1,
-            giorno,
-            ore,
-            minuti
-        );
+if (!fasceConsentite.includes(fasciaOraria)) {
+    return res.status(400).json({
+        messaggio: 'Fascia oraria non valida.'
+    });
+}
 
+const oraInizio =
+    fasciaOraria.split('-')[0];
 
-    const adesso =
-        new Date();
+const [ore, minuti] =
+    oraInizio.split(':').map(Number);
 
+const dataPrenotazione =
+    new Date(
+        anno,
+        mese - 1,
+        giorno,
+        ore,
+        minuti
+    );
 
-    if (dataPrenotazione <= adesso) {                               //Ovviamente bisogna impedire prenotazioni per data e/o orari passati 
+const adesso =
+    new Date();
 
-        return res.status(400).json({
-            messaggio:
-                'Non puoi prenotare una data o un orario passato.'
-        });
-
-    }
+// La prenotazione deve essere nel futuro
+if (dataPrenotazione <= adesso) {
+    return res.status(400).json({
+        messaggio:
+            'Non puoi prenotare una data o un orario passato.'
+    });
+}
 
     const querySala = `
         SELECT id
@@ -896,7 +926,7 @@ app.delete(                                //Funzione utilizzabile sempre dall'a
         const id =
             req.params.id;
 
-                                            //Prima dell'effettiva cancellazione si controlla se la stanza in questione ha qualche prenotazione futura, in caso affermativo si blocca l'eliminazione
+                                            //Prima dell'effettiva cancellazione si controlla se la stanza in questione ha qualche prenotazione, in caso affermativo si blocca l'eliminazione
         const controllo = ` 
             SELECT id
             FROM prenotazioni
