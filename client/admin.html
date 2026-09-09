@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Area amministratore</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body style="display: none;">        <!--Inizialmente faccio in modo che l'intero body sia nascosto, così da evitare che chiunque entri in admin.html possa vedere l'area amministratore-->
+                                      <!--Solo una protezione visiva lato frontend-->
+    <header>
+
+        <h1>
+            Area amministratore
+        </h1>
+
+        <p>
+            Gestisci sale, prenotazioni e utenti.
+        </p>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="sale.html">
+                Sale
+            </a>
+
+            <a href="prenotazioni.html">
+                Le mie prenotazioni
+            </a>
+
+            <button id="logout">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>                                         <!--Diviso in varie section per le varie funzionalità, così da rendere tutto più pulito-->
+
+        <p id="messaggioAdmin"></p>                <!--Spazio nel quale JavaScript può mostrare messaggi relativi alle operazioni dell'amministratore-->
+                                            
+        <section>
+
+    <h2>
+        Riepilogo
+    </h2>
+
+    <div id="statisticheAdmin">                    <!--Blocco per far vedere all'admin tutte le varie statistiche-->
+
+        <p>
+            Prenotazioni:
+            <strong id="numeroPrenotazioni">
+                -
+            </strong>                              <!--Da più importanza semantica al testo-->
+        </p>
+
+        <p>
+            Sale:
+            <strong id="numeroSale">
+                -
+            </strong>
+        </p>
+
+        <p>
+            Utenti:
+            <strong id="numeroUtenti">
+                -
+            </strong>
+        </p>
+
+    </div>
+
+</section> 
+
+        <!-- ========================= -->
+        <!-- PRENOTAZIONI -->
+        <!-- ========================= -->
+
+        <section>                                    <!--Tutte le varie prenotazioni vengono messe qui da admin.js-->
+
+            <h2>
+                Gestione prenotazioni
+            </h2>
+
+            <div
+                id="listaPrenotazioniAdmin"
+            >
+                Caricamento...
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- SALE -->
+        <!-- ========================= -->
+
+        <section>                                   <!--Stessa cosa delle sale, contenitore dinamico che verrà riempito da admin.js-->
+
+            <h2>
+                Gestione sale
+            </h2>
+
+            <div
+                id="listaSaleAdmin"
+            >
+                Caricamento...
+            </div>
+
+
+            <h3>
+                Aggiungi una nuova sala
+            </h3>
+
+
+            <form id="formNuovaSala">                      <!--L'admin puà andare ad aggiungere una o più sale, fornendo tutte le informazioni necessarie naturalmente-->
+
+                <label for="nomeSala">
+                    Nome della sala
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeSala"
+                    placeholder="Es. Sala studio A"
+                    required
+                >
+
+
+                <label for="capienzaSala">               <!--Vuole il valore numerico per la capienza della sala, il quale deve essere compreso tra 1 e 200-->
+                    Capienza
+                </label>
+
+                <input
+                    type="number"
+                    id="capienzaSala"
+                    min="1"
+                    max="200"
+                    placeholder="Es. 20"
+                    required
+                >
+
+
+                <button type="submit">
+                    Aggiungi sala
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- UTENTI -->
+        <!-- ========================= -->
+
+        <section>
+
+            <h2>
+                Utenti registrati
+            </h2>
+
+            <div
+                id="listaUtentiAdmin"
+            >
+                Caricamento...
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>                                                 <!--Serve a mettere il piè di pagina del documento-->
+
+        <p>
+            Sistema di prenotazione sale studio
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        document
+            .getElementById('logout')
+            .addEventListener(
+                'click',
+                async () => {
+
+                    try {
+
+                        const risposta =
+                            await fetch(
+                                '/api/logout',
+                                {
+                                    method: 'POST'
+                                }
+                            );
+
+
+                        if (risposta.ok) {
+
+                            window.location.href =
+                                'login.html';
+
+                        }
+
+                    } catch (errore) {
+
+                        console.error(
+                            errore
+                        );
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+    <script src="js/admin.js"></script>                      <!--Solito collegamento al file .js-->
+
+</body>
+
+</html>

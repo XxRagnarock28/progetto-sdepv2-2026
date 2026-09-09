@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Le mie prenotazioni</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <header>                                                <!--Rappresenta la parte introduttiva/intestazione della pagina -->
+
+        <h1>
+            Le mie prenotazioni
+        </h1>
+
+        <nav>                                               <!--Indica una parte dedicata ai collegamenti di navigazione -->
+                         
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="sale.html">
+                Prenota una sala
+            </a>
+
+            <button id="logout">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>                                              <!--Contiene il contenuto principale della pagina  -->
+
+        <div id="listaPrenotazioni">                    <!--Contenitore nel quale JavaScrit inserirà le prenotazioni -->
+            Caricamento...
+        </div>
+
+    </main>
+
+
+    <script>
+
+        document
+            .getElementById('logout')
+            .addEventListener(
+                'click',
+                async () => {
+
+                    const risposta =
+                        await fetch(
+                            '/api/logout',
+                            {
+                                method: 'POST'
+                            }
+                        );
+
+
+                    if (risposta.ok) {
+
+                        window.location.href =
+                            'login.html';
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+    <script src="js/prenotazioni.js"></script>                <!--Carica il file JavaScript esterno  -->
+
+</body>
+
+</html>

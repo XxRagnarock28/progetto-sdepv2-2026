@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title> Registrazione </title>
+      <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Registrazione</h1>
+
+    <form id="formRegistrazione">                         <!--Il form contiene i dati necessari per creare un account -->         
+                                                          <!--Tutto il form indica i dati che servono, e solo obbligatori, il form non viene inviato se il campo è vuoto--> 
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+
+        <br><br>
+
+        <label for="cognome">Cognome:</label>
+        <input type="text" id="cognome" required>
+
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <br><br>
+                                                          <!--I campi vengono recuperati tramite gli id degli stessi, quindi HTML e JavaScript comunicano tramite gli id--> 
+        <button type="submit">Registrati</button>
+
+    </form>
+
+    <p id="messaggio"></p>                                <!--Contenitore nel quale JavaScript visualizza la risposta del server --> 
+
+    <a href="index.html">Torna alla Home</a>
+
+    <script src="js/registrazione.js"></script>
+</body>
+</html>

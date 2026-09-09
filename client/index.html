@@ -1,0 +1,56 @@
+<!DOCTYPE html>                         <!-- Serve a dire al browser che stiamo utilizzando HTML5 -->
+<html lang="it">                         <!--Apre il documento HTML e specifica che la lingua principale della pagina è l'italiano -->
+<head>
+    <meta charset="UTF-8">               <!--Specifica la codifica dei caratteri, mi consernte di usare caratteri speciali tipo "à" e via dicendo...-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <!--Dice al browser di usare la grandezza dello schermo come grandezza della pagina-->
+    <title>Prenotazione Sale Studio</title>                     <!-- Titolo associato alla pagina, normalmente visualizzato nella scheda del browser, quindi non è quello che vede l'utente -->                    
+    <link rel="stylesheet" href="css/style.css">.  <!-- Collego il documento HTML alla pagina di stile css -->
+</head>
+<body>                                          <!-- Contiene tutto ciò che viene visualizzato nella pagina  -->
+      <h1> Prenotazione sale studio</h1>        <!-- Questo è il titolo (quello che vede l'utente nella pagina ) -->
+      <p> Benvenuto nel sistema di prenotazione delle sale studio</p>      <!-- "p" indica il paragrafo  -->
+      <a href="login.html">Accedi</a>                     <!-- "a" va a creare un collegamento ipertestuale, quindi quando si pigia ti porta a login.html  -->
+      <a href="registrazione.html">Registrati</a>
+
+<button id="logout">        <!-- "id" è importante perché JavaScript lo utilizzerà per troverà per trovare questo elemento, quindi HTML e JavaScript sono collegati tramite id  -->
+    Logout
+</button>
+
+<script>                                       //L'ho utilizzato per mettere JavaScript direttamente dentro HTML, per evitare di creare un file a parte index.js
+
+    document                                               //Quando l'utente fa il logout verrà eseguita questa funzione
+        .getElementById('logout')
+        .addEventListener('click', async () => {
+
+            const risposta =                            //La funzone fa una richiesta al backend 
+                await fetch(                
+                    '/api/logout',
+                    {                                 //Il server distrugge la sessione e comunica una risposta 
+                        method: 'POST'
+                    }
+                );
+
+            if (risposta.ok) {                           //Se il logout è andato a buon fine porta l'utente alla pagina di login 
+
+                window.location.href =
+                    'login.html';
+            }
+
+        });
+
+</script>
+                                                 <!-- Queste successive sono righe di codice per i collegamenti alle altre pagine del progetto  -->
+<a href="admin.html">
+    Area amministratore
+</a>
+
+<a href="prenotazioni.html">
+    Le mie prenotazioni
+</a>
+
+<a href="sale.html">
+    Prenota una sala
+</a>
+
+</body>
+</html>

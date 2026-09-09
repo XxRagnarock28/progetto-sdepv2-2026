@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Prenotazione sala</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"       
+    >                                          <!--Collegamento al file che si occupa del design di come apparirà la pagina-->
+
+</head>
+
+<body>
+
+    <h1>Prenota una sala</h1>
+
+    <div id="informazioniSala"></div>          <!--Altro contenitore dinamico, l'utente sceglie data e fascia oraria per la prenotazione della sala -->
+
+    <form id="formPrenotazione">
+
+        <label for="data">
+            Data:
+        </label>
+
+        <br>
+
+        <input
+            type="date"
+            id="data"
+            required
+        >                                      <!--Crea il campo apposito per la scelta della data -->
+
+        <br><br>
+
+        <label for="fasciaOraria">
+            Fascia oraria:
+        </label>
+
+        <br>
+
+        <select
+            id="fasciaOraria"
+            required
+        >                                      <!--"select" va a creare una lista a tendina -->
+
+            <option value="">                  <!--"value" è il valore effettivamente inviato a JavaScript-->
+                Seleziona una fascia
+            </option>
+
+            <option value="09:00-11:00">
+                09:00 - 11:00
+            </option>
+
+            <option value="11:00-13:00">
+                11:00 - 13:00
+            </option>
+
+            <option value="14:00-16:00">
+                14:00 - 16:00
+            </option>
+
+            <option value="16:00-18:00">
+                16:00 - 18:00
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Conferma prenotazione           <!--L'id della sala da prenotare gli arriva da sale.js -->
+        </button>
+
+    </form>
+
+    <p id="messaggio"></p>
+
+    <br>
+
+    <a href="sale.html">
+        Prenota una sala
+    </a>
+
+    <br>
+
+    <a href="index.html">
+        Torna alla home
+    </a>
+    <script src="js/prenotazione.js"></script>
+
+</body>
+
+</html>

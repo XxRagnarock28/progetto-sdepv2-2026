@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <h1>Login</h1>
+
+    <form id="formLogin">                                <!--Crea il form del login, raggruppa i campi che l'utente deve compilare-->        
+
+        <label for="email">Email:</label>                <!--Indica l'etichetta del campo, il "for" indica che l'etichetta è associata all'elemento che ha id = email -->
+        <input type="email" id="email" required>.        <!--Indica che l'utente deve inserire un indirizzo email -->
+                                                         <!--"required" rende il campo obbligatorio -->
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>   <!--"type=password" fa in modo di rendere nascosto ciò che l'utente andrà a digitare-->
+
+        <br><br>
+
+        <button type="submit">Accedi</button>            <!--Pulsante che andrà ad inviare il form -->
+                                                         <!--"type=submit" genera l'evento di submit che poi verrà intercettato da login.js-->
+    </form>
+
+    <p id="messaggio"></p>                               <!--Il messaggio all'interno di questo paragrafo verrà messa da JavaScript-->
+
+    <a href="index.html">Torna alla Home</a>             <!--Semplice collegamento per tornare alla home, l'utente deve poter tornare alla home quando vuole-->
+
+    <script src="js/login.js"></script>                  <!--Dice al server di caricare il file login.js-->
+
+</body>
+</html>

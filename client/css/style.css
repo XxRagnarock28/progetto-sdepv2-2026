@@ -1,0 +1,149 @@
+body{
+    font-family: Arial, sans-serif;
+    margin :0;
+    padding: 40px;
+    background-color: #f5f5f5;
+}
+
+h1{
+   margin-bottom: 10px;
+}
+
+a{
+  display: inline-block;
+  margin-right: 15px;
+  text-decoration: none;
+} 
+
+
+/* =========================================
+   AREA AMMINISTRATORE
+   ========================================= */
+
+
+header {
+    margin-bottom: 30px;
+}
+
+
+header nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+header nav a {
+    text-decoration: none;
+}
+
+
+header nav button {
+    cursor: pointer;
+}
+
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+main section {
+
+    margin-bottom: 35px;
+    padding: 25px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+}
+
+
+main section h2 {
+
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
+
+
+#listaPrenotazioniAdmin > div,
+#listaSaleAdmin > div,
+#listaUtentiAdmin > div {
+
+    padding: 15px;
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+}
+
+
+#listaPrenotazioniAdmin h3,
+#listaSaleAdmin h3 {
+
+    margin-top: 0;
+
+}
+
+
+#formNuovaSala {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    max-width: 400px;
+
+}
+
+
+#formNuovaSala input {
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+
+#formNuovaSala button {
+
+    padding: 10px;
+
+    cursor: pointer;
+
+}
+
+
+#listaPrenotazioniAdmin button,
+#listaSaleAdmin button {
+
+    padding: 8px 12px;
+
+    cursor: pointer;
+
+}
+
+
+#messaggioAdmin {
+
+    margin-bottom: 20px;
+
+}
+
+
+footer {
+
+    text-align: center;
+
+    margin-top: 40px;
+    padding: 20px;
+
+}

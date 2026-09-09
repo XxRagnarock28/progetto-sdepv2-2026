@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sale studio</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>
+            Sale studio
+        </h1>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="prenotazioni.html">
+                Le mie prenotazioni
+            </a>
+
+            <button id="logout">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div id="listaSale">                  //Questo è il posto in cui voglio andare a mettere la lista delle sale
+            Caricamento...
+        </div>
+
+    </main>
+
+
+    <script>
+
+        document
+            .getElementById('logout')
+            .addEventListener(
+                'click',
+                async () => {
+
+                    const risposta =
+                        await fetch(
+                            '/api/logout',
+                            {
+                                method: 'POST'
+                            }
+                        );
+
+
+                    if (risposta.ok) {
+
+                        window.location.href =
+                            'login.html';
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+    <script src="js/sale.js"></script>
+
+</body>
+
+</html>
